@@ -3,8 +3,66 @@
 #include <fstream>
 #include <string>
 #include "globalFile.h"
+#include "student.h"
+#include "staff.h"
+#include "admin.h"
 
 using namespace std;
+
+// enter admin subMenu
+void adminMenu(Identity* &admin)
+{
+    while(true)
+    {
+        admin->subMenu();
+        // convert base ptr to subclass ptr
+        Admin* man = (Admin*) admin;
+
+        int select = 0;
+        cin >> select;
+
+        if (select == 1)    // add account
+        {
+            cout << "Add account." << endl;
+            man->add_member();
+        }
+        else if (select == 2)   //check account
+        {
+            cout << "Check accounts." << endl;
+            man->show_member();
+        }
+        else if(select == 3)    //check lab info
+        {
+            cout << "Check lab info." << endl;
+            man->show_lab();
+        }
+        else if (select == 4)   //clear appointment
+        {
+            cout << "Clear appointments." << endl;
+            man->clean_file();
+        }
+        else
+        {
+            delete admin;
+            cout << "Log out." << endl;
+            cout << "Press Enter to continue..." << endl;
+            cin.ignore(1, '\n');
+            cin.get();
+            system("clear"); 
+            return;
+        }
+
+
+ 
+
+
+
+    }
+    
+
+}
+
+
 
 void login(string fileName, int type)
 {
@@ -44,14 +102,71 @@ void login(string fileName, int type)
     if (type == 1)
     {
         // verify student
+        int fid;
+        string fname;
+        string fpwd;
+        while (ifs >> fid && ifs >> fname && ifs >> fpwd)
+        {
+            if (fid == id && fname == name && fpwd ==pwd)
+            {
+                cout << "Student login success." << endl;
+                cout << "Press Enter to continue..." << endl;
+                cin.ignore(1, '\n');
+                cin.get();
+                system("clear"); 
+
+                person = new Student(id, name, pwd);
+                // enter student submenu
+
+                return;
+            }
+        }
+
     }
     else if (type == 2)
     {
         // verify staff
+        int fid;
+        string fname;
+        string fpwd;
+        while (ifs >> fid && ifs >> fname && ifs >> fpwd)
+        {
+            if (fid == id && fname == name && fpwd ==pwd)
+            {
+                cout << "Staff login success." << endl;
+                cout << "Press Enter to continue..." << endl;
+                cin.ignore(1, '\n');
+                cin.get();
+                system("clear"); 
+
+                person = new Staff(id, name, pwd);
+                // enter staff submenu
+
+                return;
+            }
+        }
     }
     else if (type == 3)
     {
         // verify admin
+        string fname;
+        string fpwd;
+        while (ifs >> fname && ifs >> fpwd)
+        {
+            if (fname == name && fpwd ==pwd)
+            {
+                cout << "Admin login success." << endl;
+                cout << "Press Enter to continue..." << endl;
+                cin.ignore(1, '\n');
+                cin.get();
+                system("clear"); 
+
+                person = new Admin(name, pwd);
+                // enter admin submenu
+                adminMenu(person);
+                return;
+            } 
+        }
     }
     cout << "Login Failed." << endl;
     cout << "Press Enter to continue..." << endl;
@@ -111,12 +226,6 @@ int main()
         }
 
     }
-
-    
-
-    
-
-
 
     // cin.ignore(1, '\n');
     // cin.get();
