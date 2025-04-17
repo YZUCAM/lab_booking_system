@@ -1,0 +1,22 @@
+#pragma once
+#include <iostream>
+#include "identity.h"
+#include <string>
+
+using namespace std;
+
+class Student : public Identity
+{
+public:
+    Student();
+    Student(int id, string name, string pwd);
+
+    virtual void subMenu();
+
+    void apply_order();
+    void show_my_order();
+    void show_all_order();
+
+    int m_ID;
+
+};
