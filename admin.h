@@ -7,6 +7,7 @@
 #include <vector>
 #include "student.h"
 #include "staff.h"
+#include "lab.h"
 #include <algorithm>
 
 using namespace std;
@@ -30,5 +31,5 @@ public:
 
     vector<Student> v_stu;
     vector<Staff> v_sta;
-
+    vector<Lab> v_lab;
 };

@@ -9,6 +9,54 @@
 
 using namespace std;
 
+// student subMenu
+void studentMenu(Identity* & student)
+{
+    while(true)
+    {
+        student->subMenu();
+        Student* stu =(Student*) student;
+
+        int select = 0;
+        cin >> select;
+
+        if (select == 1)
+        {
+            // make an appointment
+            stu->apply_order();
+        }
+        else if (select == 2)
+        {
+            // check own appointment
+            stu->show_my_order();
+        }
+        else if (select == 3)
+        {
+            // check all appointment
+            stu->show_all_order();
+        }
+        else if (select == 4)
+        {
+            // cancel appointment
+            stu->cancel_order();
+        }
+        else
+        {
+            // Log out
+            delete student;
+            cout << "Log out." << endl;
+            cout << "Press Enter to continue..." << endl;
+            cin.ignore(1, '\n');
+            cin.get();
+            system("clear"); 
+            return;
+        }
+    }
+}
+
+
+
+
 // enter admin subMenu
 void adminMenu(Identity* &admin)
 {
@@ -23,22 +71,22 @@ void adminMenu(Identity* &admin)
 
         if (select == 1)    // add account
         {
-            cout << "Add account." << endl;
+            // cout << "Add account." << endl;
             man->add_member();
         }
         else if (select == 2)   //check account
         {
-            cout << "Check accounts." << endl;
+            // cout << "Check accounts." << endl;
             man->show_member();
         }
         else if(select == 3)    //check lab info
         {
-            cout << "Check lab info." << endl;
+            // cout << "Check lab info." << endl;
             man->show_lab();
         }
         else if (select == 4)   //clear appointment
         {
-            cout << "Clear appointments." << endl;
+            // cout << "Clear appointments." << endl;
             man->clean_file();
         }
         else
@@ -51,15 +99,7 @@ void adminMenu(Identity* &admin)
             system("clear"); 
             return;
         }
-
-
- 
-
-
-
     }
-    
-
 }
 
 
@@ -117,7 +157,7 @@ void login(string fileName, int type)
 
                 person = new Student(id, name, pwd);
                 // enter student submenu
-
+                studentMenu(person);
                 return;
             }
         }

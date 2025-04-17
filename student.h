@@ -2,6 +2,10 @@
 #include <iostream>
 #include "identity.h"
 #include <string>
+#include <vector>
+#include "lab.h"
+#include <fstream>
+#include "globalFile.h"
 
 using namespace std;
 
@@ -16,7 +20,9 @@ public:
     void apply_order();
     void show_my_order();
     void show_all_order();
+    void cancel_order();
 
     int m_ID;
 
+    vector<Lab> v_lab;
 };

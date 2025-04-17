@@ -1,8 +1,7 @@
 #include "admin.h"
 
 
-Admin::Admin()
-{}
+Admin::Admin(){}
 
 Admin::Admin(string name, string pwd)
 {
@@ -11,6 +10,18 @@ Admin::Admin(string name, string pwd)
 
     //init vector container and get all student and staff info from files
     this->init_vector(); 
+
+    //init lab room info
+    ifstream ifs;
+    ifs.open(LAB_FILE, ios::in);
+
+    Lab lab;
+    while (ifs >> lab.labroom_ID && ifs >> lab.labroom_capacity)
+    {
+        v_lab.push_back(lab);
+    }
+    ifs.close();
+
 }
 
 void Admin::subMenu()
@@ -136,12 +147,27 @@ void Admin::show_member()
 
 void Admin::show_lab()
 {
-
+    cout << "Lab room information: " << endl;
+    for (vector<Lab>::iterator it = v_lab.begin(); it != v_lab.end(); it++)
+    {
+        cout << "Lab room ID: " << it->labroom_ID << " lab capacity: " << it->labroom_capacity << endl;
+    }
+    cout << "Press Enter to continue..." << endl;
+    cin.ignore(1, '\n');
+    cin.get();
+    system("clear"); 
 }
 
 void Admin::clean_file()
 {
-    
+    ofstream ofs(ORDER_FILE, ios::trunc);
+    ofs.close();
+
+    cout << "Clear success." << endl;
+    cout << "Press Enter to continue..." << endl;
+    cin.ignore(1, '\n');
+    cin.get();
+    system("clear"); 
 }
 
 void Admin::init_vector()
