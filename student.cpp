@@ -97,12 +97,12 @@ void Student::apply_order()
 
     ofstream ofs;
     ofs.open(ORDER_FILE, ios::app);
-    ofs << "Date: " << date << " ";
-    ofs << "Period: " << interval << " ";
-    ofs << "Student ID: " << this->m_ID << " ";
-    ofs << "Student name: " << this->m_name << " ";
-    ofs << "Room No: " << roomid << " ";
-    ofs << "Status: " << 1 << endl;
+    ofs << "Date:" << date << " ";                      // no white space, as ifs sep is white space
+    ofs << "Period:" << interval << " ";
+    ofs << "Student_ID:" << this->m_ID << " ";
+    ofs << "Student_name:" << this->m_name << " ";
+    ofs << "Room_No:" << roomid << " ";
+    ofs << "Status:" << 1 << endl;
 
     ofs.close();
 
@@ -114,15 +114,107 @@ void Student::apply_order()
 
 void Student::show_my_order()
 {
+    map<string, string> weekday;
+    weekday.insert(make_pair("1", "Monday"));
+    weekday.insert(make_pair("2", "Tuesday"));
+    weekday.insert(make_pair("3", "Wednesday"));
+    weekday.insert(make_pair("4", "Thursday"));
+    weekday.insert(make_pair("5", "Friday"));
 
+    map<string, string> status_info;
+    status_info.insert(make_pair("1", "Review"));
+    status_info.insert(make_pair("2", "Success"));
+    status_info.insert(make_pair("3", "Failed"));
+    status_info.insert(make_pair("4", "Canceled"));
+
+    OrderMant om;
+    if (om.m_size == 0)
+    {
+        cout << "No appointment records" << endl;
+        cout << "Press Enter to continue..." << endl;
+        cin.ignore(1, '\n');
+        cin.get();
+        system("clear");
+        return;
+    } 
+
+    for (int i = 0; i < om.m_size; i++)
+    {
+        if (this->m_ID == atoi(om.m_orderDict[i]["Student_ID"].c_str()))
+        {
+            // find my own appointment
+            cout << "Appointment date: " << weekday[om.m_orderDict[i]["Date"]];
+            cout << "   Time: " << (om.m_orderDict[i]["Period"] == "1" ? "Moring":"Afternoon");
+            cout << "   Lab Room No: " << om.m_orderDict[i]["Room_No"];
+            cout << "   Status: " << status_info[om.m_orderDict[i]["Status"]] << endl;
+        }
+    }
+    cout << "Press Enter to continue..." << endl;
+    cin.ignore(1, '\n');
+    cin.get();
+    system("clear");
 }
 
 void Student::show_all_order()
 {
-    
+    map<string, string> weekday;
+    weekday.insert(make_pair("1", "Monday"));
+    weekday.insert(make_pair("2", "Tuesday"));
+    weekday.insert(make_pair("3", "Wednesday"));
+    weekday.insert(make_pair("4", "Thursday"));
+    weekday.insert(make_pair("5", "Friday"));
+
+    map<string, string> status_info;
+    status_info.insert(make_pair("1", "Review"));
+    status_info.insert(make_pair("2", "Success"));
+    status_info.insert(make_pair("3", "Failed"));
+    status_info.insert(make_pair("4", "Canceled"));
+
+    OrderMant om;
+    if (om.m_size == 0)
+    {
+        cout << "No appointment records" << endl;
+        cout << "Press Enter to continue..." << endl;
+        cin.ignore(1, '\n');
+        cin.get();
+        system("clear");
+        return;
+    } 
+
+    for (int i = 0; i < om.m_size; i++)
+    {
+        cout << i+1 << ". ";
+        cout << "Appointment date: " << weekday[om.m_orderDict[i]["Date"]];
+        cout << "   Time: " << (om.m_orderDict[i]["Period"] == "1" ? "Moring":"Afternoon");
+        cout << "   Student_ID: " << om.m_orderDict[i]["Student_ID"];
+        cout << "   Student_name: " << om.m_orderDict[i]["Student_name"];
+        cout << "   Lab Room No: " << om.m_orderDict[i]["Room_No"];
+        cout << "   Status: " << status_info[om.m_orderDict[i]["Status"]] << endl;
+    }
+    cout << "Press Enter to continue..." << endl;
+    cin.ignore(1, '\n');
+    cin.get();
+    system("clear");
 }
 
 void Student::cancel_order()
 {
+    OrderMant om;
+    if (om.m_size == 0)
+    {
+        cout << "No appointment records" << endl;
+        cout << "Press Enter to continue..." << endl;
+        cin.ignore(1, '\n');
+        cin.get();
+        system("clear");
+        return;
+    } 
+
+
+
+
+
+
+
     
 }

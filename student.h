@@ -6,6 +6,7 @@
 #include "lab.h"
 #include <fstream>
 #include "globalFile.h"
+#include "orderMant.h"
 
 using namespace std;
 
