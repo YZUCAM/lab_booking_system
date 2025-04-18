@@ -2,15 +2,13 @@
 <table>
   <tr>
     <td rowspan="3">
-      <img src="https://raw.githubusercontent.com/YZUCAM/lab_booking_system/master/docsrc/main.png" width="200"/>
+      <img src="https://raw.githubusercontent.com/YZUCAM/lab_booking_system/master/docsrc/main.png" width="300"/>
     </td>
     <td>
-      <img src="https://raw.githubusercontent.com/YZUCAM/lab_booking_system/master/docsrc/student.png" width="200"/>
+      <img src="https://raw.githubusercontent.com/YZUCAM/lab_booking_system/master/docsrc/student.png" width="300"/>
     </td>
-  </tr>
-  <tr>
     <td>
-      <img src="https://raw.githubusercontent.com/YZUCAM/lab_booking_system/master/docsrc/admin.png" width="200"/>
+      <img src="https://raw.githubusercontent.com/YZUCAM/lab_booking_system/master/docsrc/admin.png" width="300"/>
     </td>
   </tr>
 </table>
