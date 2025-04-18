@@ -29,15 +29,15 @@ void Admin::subMenu()
     cout << "==================== Log in Success ====================" << endl;
     cout << endl;
     cout << " ------------------------------------------------------ \n";
-    cout << "|                    1. Add Account                    |\n";
+    cout << "|                 1. Add Account                       |\n";
     cout << "|                                                      |\n";
-    cout << "|                    2. Check Account                  |\n";
+    cout << "|                 2. Check Account                     |\n";
     cout << "|                                                      |\n";
-    cout << "|                    3. Check Lab Info                 |\n";
+    cout << "|                 3. Check Lab Info                    |\n";
     cout << "|                                                      |\n";
-    cout << "|                    4. Clear Appointments             |\n";
+    cout << "|                 4. Clear Appointments                |\n";
     cout << "|                                                      |\n";
-    cout << "|                    0. Log Out                        |\n";
+    cout << "|                 0. Log Out                           |\n";
     cout << " ------------------------------------------------------ \n";
     cout << "Please enter your choice" << endl;
 

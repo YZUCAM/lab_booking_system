@@ -2,6 +2,9 @@
 #include <iostream>
 #include "identity.h"
 #include <string>
+#include "orderMant.h"
+#include <map>
+#include <vector>
 
 using namespace std;
 

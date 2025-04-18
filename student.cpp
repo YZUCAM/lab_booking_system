@@ -122,10 +122,10 @@ void Student::show_my_order()
     weekday.insert(make_pair("5", "Friday"));
 
     map<string, string> status_info;
-    status_info.insert(make_pair("1", "Review"));
+    status_info.insert(make_pair("1", "Pending"));
     status_info.insert(make_pair("2", "Success"));
     status_info.insert(make_pair("3", "Failed"));
-    status_info.insert(make_pair("4", "Canceled"));
+    status_info.insert(make_pair("4", "Cancelled"));
 
     OrderMant om;
     if (om.m_size == 0)
@@ -144,7 +144,7 @@ void Student::show_my_order()
         {
             // find my own appointment
             cout << "Appointment date: " << weekday[om.m_orderDict[i]["Date"]];
-            cout << "   Time: " << (om.m_orderDict[i]["Period"] == "1" ? "Moring":"Afternoon");
+            cout << "   Time: " << (om.m_orderDict[i]["Period"] == "1" ? "Morning":"Afternoon");
             cout << "   Lab Room No: " << om.m_orderDict[i]["Room_No"];
             cout << "   Status: " << status_info[om.m_orderDict[i]["Status"]] << endl;
         }
@@ -165,10 +165,10 @@ void Student::show_all_order()
     weekday.insert(make_pair("5", "Friday"));
 
     map<string, string> status_info;
-    status_info.insert(make_pair("1", "Review"));
+    status_info.insert(make_pair("1", "Pending"));
     status_info.insert(make_pair("2", "Success"));
     status_info.insert(make_pair("3", "Failed"));
-    status_info.insert(make_pair("4", "Canceled"));
+    status_info.insert(make_pair("4", "Cancelled"));
 
     OrderMant om;
     if (om.m_size == 0)
@@ -185,7 +185,7 @@ void Student::show_all_order()
     {
         cout << i+1 << ". ";
         cout << "Appointment date: " << weekday[om.m_orderDict[i]["Date"]];
-        cout << "   Time: " << (om.m_orderDict[i]["Period"] == "1" ? "Moring":"Afternoon");
+        cout << "   Time: " << (om.m_orderDict[i]["Period"] == "1" ? "Morning":"Afternoon");
         cout << "   Student_ID: " << om.m_orderDict[i]["Student_ID"];
         cout << "   Student_name: " << om.m_orderDict[i]["Student_name"];
         cout << "   Lab Room No: " << om.m_orderDict[i]["Room_No"];
@@ -199,6 +199,20 @@ void Student::show_all_order()
 
 void Student::cancel_order()
 {
+
+    map<string, string> weekday;
+    weekday.insert(make_pair("1", "Monday"));
+    weekday.insert(make_pair("2", "Tuesday"));
+    weekday.insert(make_pair("3", "Wednesday"));
+    weekday.insert(make_pair("4", "Thursday"));
+    weekday.insert(make_pair("5", "Friday"));
+
+    map<string, string> status_info;
+    status_info.insert(make_pair("1", "Pending"));
+    status_info.insert(make_pair("2", "Success"));
+    status_info.insert(make_pair("3", "Failed"));
+    status_info.insert(make_pair("4", "Cancelled"));
+
     OrderMant om;
     if (om.m_size == 0)
     {
@@ -210,11 +224,54 @@ void Student::cancel_order()
         return;
     } 
 
+    cout << "Pending and success status appointments can be cancelled"  << endl;
 
+    int index = 1;
+    vector<int> v; // store the index in the m_orderDict
 
+    for (int i = 0; i < om.m_size; i++)
+    {
+        if (this->m_ID == atoi(om.m_orderDict[i]["Student_ID"].c_str()))
+        {
+            // filter status
+            if (om.m_orderDict[i]["Status"] == "1" | om.m_orderDict[i]["Status"] == "2")
+            {
+                v.push_back(i);
+                cout << index++ << ". ";
+                cout << "Appointment date: " << weekday[om.m_orderDict[i]["Date"]];
+                cout << "   Time: " << (om.m_orderDict[i]["Period"] == "1" ? "Morning":"Afternoon");
+                cout << "   Lab Room No: " << om.m_orderDict[i]["Room_No"];
+                cout << "   Status: " << status_info[om.m_orderDict[i]["Status"]] << endl;
+            }
+        }
+    }
 
-
-
-
+    cout << "Please enter record No to cancel, or enter 0 to return." << endl;
     
+    int select = 0;
+
+    while (true)
+    {
+        cin >> select;
+
+        if (select >=0 && select <= v.size())
+        {
+            if (select == 0)
+            {
+                break;
+            }
+            else
+            {
+                om.m_orderDict[v[select-1]]["Status"] = "4";
+                om.updateOrder();
+                cout << "Cancel success." << endl;
+                break;
+            }
+        }
+        cout << "Invalid input, please re-enter." << endl;
+    }
+    cout << "Press Enter to continue..." << endl;
+    cin.ignore(1, '\n');
+    cin.get();
+    system("clear");
 }

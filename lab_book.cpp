@@ -102,6 +102,40 @@ void adminMenu(Identity* &admin)
     }
 }
 
+// enter staff submenu
+void staffMenu(Identity* &staff)
+{
+    while (true)
+    {
+        staff->subMenu();
+
+        Staff* teacher = (Staff*)staff;
+
+        int select = 0;
+
+        cin >> select;
+
+        if (select == 1)    // check all appointment
+        {
+            teacher->show_all_order();
+        }
+        else if (select == 2)   // review all appointment
+        {
+            teacher->review_order();
+        }
+        else
+        {
+            delete teacher;
+            cout << "Log out." << endl;
+            cout << "Press Enter to continue..." << endl;
+            cin.ignore(1, '\n');
+            cin.get();
+            system("clear"); 
+            return;
+        }
+    }
+}
+
 
 
 void login(string fileName, int type)
@@ -181,7 +215,7 @@ void login(string fileName, int type)
 
                 person = new Staff(id, name, pwd);
                 // enter staff submenu
-
+                staffMenu(person);
                 return;
             }
         }

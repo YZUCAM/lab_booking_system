@@ -1,4 +1,1 @@
-Date:1 Period:1 Student_ID:1 Student_name:Jason Room_No:3 Status:1
-Date:2 Period:1 Student_ID:2 Student_name:Mike Room_No:1 Status:1
-Date:5 Period:1 Student_ID:3 Student_name:Leo Room_No:4 Status:1
-Date:3 Period:2 Student_ID:4 Student_name:Philip Room_No:5 Status:1
+Date:1 Period:1 Student_ID:1 Student_name:Jason Room_No:3 Status:2 Date:2 Period:1 Student_ID:2 Student_name:Mike Room_No:1 Status:3 Date:5 Period:1 Student_ID:3 Student_name:Leo Room_No:4 Status:1 Date:3 Period:2 Student_ID:4 Student_name:Philip Room_No:5 Status:1 Date:1 Period:1 Student_ID:1 Student_name:Jason Room_No:3 Status:4 
